@@ -1,0 +1,10 @@
+import { z } from "zod";
+import { ProtocolSchema, FeedSchema, RatingCellSchema, GovernanceSchema,
+         AuditHistorySchema, IncidentHistorySchema, ProvenanceTagEnum } from "./schema.js";
+export type Protocol = z.infer<typeof ProtocolSchema>;
+export type Feed = z.infer<typeof FeedSchema>;
+export type RatingCell = z.infer<typeof RatingCellSchema>;
+export type Governance = z.infer<typeof GovernanceSchema>;
+export type AuditHistory = z.infer<typeof AuditHistorySchema>;
+export type IncidentHistory = z.infer<typeof IncidentHistorySchema>;
+export type ProvenanceTag = z.infer<typeof ProvenanceTagEnum>;
