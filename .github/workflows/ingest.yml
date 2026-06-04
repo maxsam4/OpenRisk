@@ -1,0 +1,45 @@
+name: ingest
+on:
+  schedule: [{ cron: "0 6 * * 1" }] # weekly, Mondays 06:00 UTC
+  workflow_dispatch: {}
+permissions:
+  contents: write
+  pull-requests: write
+jobs:
+  ingest:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4 # version comes from package.json "packageManager"
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+
+      # Run BOTH refreshers but DO NOT fail the job yet — we still want to open a PR
+      # carrying all provenance changes (incl. any fetch-error / Safe-failed stamps).
+      - id: feeds
+        continue-on-error: true
+        run: pnpm --filter @dra/ingestion ingest --feed defiscan
+      - id: safe
+        continue-on-error: true
+        run: pnpm --filter @dra/ingestion ingest:safe
+
+      # Schema must still hold even on a partial/error run.
+      - run: pnpm --filter @dra/core validate
+
+      - uses: peter-evans/create-pull-request@v6
+        with:
+          branch: ingest/auto-refresh
+          title: "data: automated refresh (DeFiScan + Safe governance)"
+          commit-message: "data: automated refresh (DeFiScan + Safe governance)"
+          body: |
+            Automated refresh.
+            DeFiScan outcome: ${{ steps.feeds.outcome }} · Safe governance outcome: ${{ steps.safe.outcome }}
+            On `failure`, affected cells carry `sourceStatus: fetch-error` /
+            `safeApiStatus: failed` (last good data preserved) — review before merge.
+
+      # Surface any failure AFTER the PR exists, so it is visible, not swallowed.
+      - if: steps.feeds.outcome == 'failure' || steps.safe.outcome == 'failure'
+        run: echo "::error::An automated refresh had fetch errors — see the PR." && exit 1

@@ -1,6 +1,13 @@
+// For a GitHub Pages *project* site the app is served under /<repo>, so the
+// deploy workflow sets PAGES_BASE_PATH=/<repo>. Left empty for root-served hosts
+// (Cloudflare Pages) and local builds, so neither is affected.
+const basePath = process.env.PAGES_BASE_PATH || "";
+
 /** @type {import('next').NextConfig} */
 export default {
   output: "export",
+  basePath,
+  assetPrefix: basePath || undefined,
   // Emit each route as <route>/index.html (so /protocol/aave/ resolves on static
   // hosts) rather than flat <route>.html.
   trailingSlash: true,
