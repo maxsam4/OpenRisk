@@ -202,8 +202,8 @@ export default function MethodologyPage() {
           </li>
         </ul>
         <p className="mt-4">
-          <a href="https://github.com/OWNER/openrisk" target="_blank" rel="noopener">
-            github.com/OWNER/openrisk →
+          <a href="https://github.com/maxsam4/OpenRisk" target="_blank" rel="noopener">
+            github.com/maxsam4/OpenRisk →
           </a>
         </p>
       </div>

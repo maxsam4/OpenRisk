@@ -239,7 +239,7 @@ export default async function ProtocolPage({ params }: { params: Promise<{ id: s
       <hr className="hr mt-8" />
       <p className="muted mt-4" style={{ fontSize: "13px" }}>
         See something wrong? This data is open source.{" "}
-        <a href="https://github.com/OWNER/openrisk" target="_blank" rel="noopener">
+        <a href="https://github.com/maxsam4/OpenRisk" target="_blank" rel="noopener">
           Submit a correction on GitHub →
         </a>
       </p>

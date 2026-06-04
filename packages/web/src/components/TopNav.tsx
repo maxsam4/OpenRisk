@@ -34,7 +34,7 @@ export function TopNav() {
           </Link>
           <a
             className={styles.navlink}
-            href="https://github.com/OWNER/openrisk"
+            href="https://github.com/maxsam4/OpenRisk"
             target="_blank"
             rel="noopener"
           >

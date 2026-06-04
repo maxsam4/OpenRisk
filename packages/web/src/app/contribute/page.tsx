@@ -114,7 +114,7 @@ export default function ContributePage() {
 
       <hr className="hr mt-8" />
       <div className="row gap-4 mt-4 wrap" style={{ alignItems: "center" }}>
-        <a className="cta-btn" href="https://github.com/OWNER/openrisk" target="_blank" rel="noopener">
+        <a className="cta-btn" href="https://github.com/maxsam4/OpenRisk" target="_blank" rel="noopener">
           Open the repo →
         </a>
         <Link
