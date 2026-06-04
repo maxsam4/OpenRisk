@@ -26,6 +26,11 @@ jobs:
           node-version: 22
           cache: pnpm
       - run: pnpm install --frozen-lockfile
+      # Auto-enable Pages (build type "workflow") so the repo owner needn't toggle
+      # it by hand; harmless if Pages is already enabled.
+      - uses: actions/configure-pages@v5
+        with:
+          enablement: true
       - name: Build static export
         # Project Pages serve under /<repo>; set basePath accordingly. Repo name is
         # passed via env (safe) rather than interpolated into a shell command.

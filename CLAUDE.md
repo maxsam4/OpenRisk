@@ -100,10 +100,11 @@ error); `deploy.yml` publishes the static export (`packages/web/out`) to GitHub 
 
 ## Reference docs
 
-- Design (port, don't redesign): `defi-risk-agg-poc-design/` (`styles.css`, `data.js`, JSX).
-- Spec: `docs/superpowers/specs/2026-06-04-defi-risk-aggregator-poc-design.md` (+ addendum).
-- Implementation plan: `docs/superpowers/plans/2026-06-04-defi-risk-aggregator-poc.md`.
-- Charter (no-composite): `CHARTER.md`. RFP background only: `OpenRisk_RFP_v0.md`.
+- In repo: `CHARTER.md` (no-composite constraint), `README.md`, `CONTRIBUTING.md`.
+- Internal build references kept **out** of the published repo (see `.gitignore`): the approved
+  design prototype `defi-risk-agg-poc-design/`, the spec + implementation plan under
+  `docs/superpowers/`, and `OpenRisk_RFP_v0.md`. The shipped UI (`packages/web`) was ported from
+  that design; restore these locally if you need them.
 
 ## Workflow notes
 
