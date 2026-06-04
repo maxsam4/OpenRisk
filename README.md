@@ -1,0 +1,68 @@
+# OpenRisk — Neutral DeFi Risk Intelligence Aggregator
+
+> *Every feed, one view.* An open-source, neutral view of what every major DeFi
+> **risk feed** says about a protocol — side by side, **verbatim**, with
+> **no composite scoring**.
+
+DeFi risk intelligence is fragmented across many independent feeds (DeFiScan,
+BlockAnalitica, LlamaRisk, DeFiPunk'd, and others), each with its own focus and
+methodology. There is no neutral layer that shows them together. This project is that
+layer. The mental model is **oracle diversity**: no single feed should be canonical,
+and the aggregation itself is the value. Coverage gaps are treated as *data*, not
+smoothed away.
+
+**Status:** proof-of-concept — 5 protocols (Aave, Spark, Morpho, Uniswap, Lido) ×
+4 feeds (DeFiScan, BlockAnalitica, LlamaRisk, DeFiPunk'd).
+
+## What it does — and does not — do
+
+- ✅ Shows each feed's assessment **verbatim**, with a source link and provenance.
+- ✅ Labels every protocol×feed cell `covered`, `partial`, or `not-yet-covered`.
+- ✅ Surfaces governance, audit history, incident history, and live TVL per protocol.
+- ❌ **Never** produces its own score, ranking, grade, or composite risk assessment.
+  That constraint is the project's reason to exist; it is enforced in code and in
+  [`CHARTER.md`](./CHARTER.md).
+
+## How it works
+
+A **data-as-code** monorepo, static-first — no database, no always-on backend.
+
+| Part | Path | Responsibility |
+|------|------|----------------|
+| Core | `packages/core` | Zod schema, types, `validateDataset()` (incl. the no-composite guard) |
+| Data | `data/` | Version-controlled YAML — the data layer. Corrections are pull requests. |
+| Ingestion | `packages/ingestion` | DeFiScan rating adapter **+ a Safe Transaction API service** that refreshes multisig governance into `data/governance/` (frontend stays static) |
+| Web | `packages/web` | Next.js static export (CSS Modules; UI ported from the approved design); live TVL from DefiLlama (client-side, with snapshot fallback) |
+
+Per-protocol detail pages surface each feed's verbatim verdict, governance (with on-chain/
+curated provenance tags), **audit history**, **incident history**, and live TVL.
+
+Because the data layer *is* the git repository, every datum is auditable, forkable,
+and correctable by anyone via a PR — and there is no infrastructure to keep alive
+beyond static hosting.
+
+## Develop
+
+```bash
+pnpm install
+pnpm --filter @dra/web dev     # http://localhost:3000
+pnpm validate                  # validate the data layer
+pnpm test                      # run tests
+pnpm build                     # TVL snapshot + static export to packages/web/out
+```
+
+Requires Node 22+ and pnpm 9+.
+
+## Contributing
+
+The data layer is plain YAML files; corrections and additions are ordinary pull
+requests. To fix a rating, edit the relevant `data/ratings/<protocol>/<feed>.yaml`,
+keep the wording **verbatim** from the source, update the provenance, and open a PR —
+CI validates it. **Real, verified data only — no placeholders or guesses**; if a value
+can't be verified, mark the cell `not-yet-covered` (with a real `checkedUrl`) rather than
+invent it. See [`CONTRIBUTING.md`](./CONTRIBUTING.md) for adding a protocol or proposing a
+new feed, and the in-repo conflict-disclosure expectations.
+
+## License
+
+[AGPL-3.0](./LICENSE). A public good — open, neutral, and forkable.

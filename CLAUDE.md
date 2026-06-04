@@ -1,0 +1,110 @@
+# CLAUDE.md
+
+Guidance for Claude Code (and humans) working in this repository.
+
+## What this is
+
+A free, open-source **neutral DeFi risk-intelligence aggregator**. It shows what
+multiple independent risk feeds (DeFiScan, BlockAnalitica, LlamaRisk, DeFiPunk'd, …)
+say about DeFi protocols, **side by side and verbatim**. The aggregation is the
+value — like oracle diversity, no single feed is canonical.
+
+Current stage: **proof-of-concept** (5 protocols × 4 feeds). Being built from the
+plan in `docs/superpowers/plans/2026-06-04-defi-risk-aggregator-poc.md` against the
+spec in `docs/superpowers/specs/2026-06-04-defi-risk-aggregator-poc-design.md`.
+
+## Non-negotiable product invariants (do not violate these)
+
+1. **No composite scoring.** This project NEVER computes or displays its own score,
+   ranking, grade, or aggregate risk assessment. Feed verdicts are shown only in the
+   feed's own words. This is enforced in code (Zod `.strict()` + the recursive
+   `findForbiddenKeys` denylist in `@dra/core` + a no-synthesis UI test) and documented
+   in `CHARTER.md`. Changing it requires the process in the charter.
+2. **Verbatim only.** Copy each feed's labels/text unchanged; link the source.
+3. **Coverage gaps are data, with evidence.** Every protocol×feed cell is labeled
+   `covered | partial | not-yet-covered`. `partial` requires `coverageScope`;
+   `not-yet-covered` requires a `provenance.checkedUrl`. Never a blank.
+4. **Provenance on everything.** Method, checked URL, last-checked date, and a loud
+   stale/fetch-error signal travel with every datum.
+
+If you are tempted to add a "score", "rank", "tier", "grade", "overall", or any
+synthesized number — stop. That is the one thing this project must not do.
+
+## Architecture
+
+Data-as-code monorepo, static-first. No database, no always-on backend.
+
+- `packages/core` — Zod schemas, TS types, `validateDataset()` / `checkDataLayout()`.
+- `data/` — the data layer: version-controlled YAML. Corrections are pull requests.
+  - `data/protocols/<id>.yaml`, `data/feeds/<id>.yaml`
+  - `data/ratings/<protocolId>/<feedId>.yaml` (one file per cell)
+  - `data/governance/<id>.yaml`, `data/audits/<id>.yaml`, `data/incidents/<id>.yaml`
+  - `data/tvl-snapshots.yaml` (generated build-time cache; not hand-edited)
+- `packages/ingestion` — per-feed adapters + a CLI that writes data files (it never
+  commits or opens PRs — the GitHub Action owns that).
+- `packages/ingestion` also holds the **Safe governance service** (`ingest:safe`): it
+  fetches the Safe Transaction API and refreshes the multisig fields in
+  `data/governance/*.yaml` (loud failure → `safeApiStatus: failed`, last good data kept).
+- `packages/web` — Next.js (App Router, `output: "export"`). Reads `data/` at build
+  time; live TVL is fetched client-side from DefiLlama with a snapshot fallback. The UI is
+  **ported from the approved design in `defi-risk-agg-poc-design/`** using **CSS Modules +
+  one global token stylesheet** (`app/globals.css`) — no Tailwind. Match the design; don't
+  restyle. Dark/light theme via a `ThemeProvider` toggling `[data-theme]`.
+
+## Commands
+
+```bash
+pnpm install
+pnpm validate    # validate the data layer (schema + integrity + no-composite guard)
+pnpm test        # all package tests
+pnpm typecheck
+pnpm lint
+pnpm build       # snapshot TVL + static export
+pnpm --filter @dra/web dev                       # local dev server
+pnpm --filter @dra/ingestion ingest --feed defiscan   # refresh a rating feed → data/ratings/
+pnpm --filter @dra/ingestion ingest:safe              # refresh multisig governance → data/governance/
+```
+
+CI must stay green: `lint → typecheck → validate → test → build`. A PR cannot merge
+with invalid data. `pnpm validate` failing on a forbidden key name is intended.
+
+## Data integrity (hard rule)
+
+- **Real data only.** Every committed value must be a real, verified fact from the cited
+  source (real multisig addresses, real DeFiScan stages, real audit firms/URLs, real Safe
+  addresses + chainIds, real DefiLlama slugs). **No placeholders, no fabrication.** A truncated
+  `0x…` address, an `example.com` URL, or a guessed value is never acceptable.
+- **If you can't verify it, don't invent it.** A rating cell becomes `not-yet-covered` (with a
+  real `checkedUrl`); an optional field is omitted. `pnpm validate` + the placeholder grep in
+  the plan's Task 4 must pass before any data commit.
+- The approved design's `defi-risk-agg-poc-design/data.js` is a **structural template only** —
+  its values are placeholders; re-verify everything.
+
+## Conventions
+
+- TypeScript everywhere; types are defined once in `@dra/core` and imported.
+- Data files are YAML, deterministically serialized (sorted keys) for clean diffs.
+- File path must match ids: `data/ratings/<protocolId>/<feedId>.yaml`.
+- Adapters/services must **fail loudly** — never silently emit empty/`not-yet-covered` on a
+  fetch/parse error. Distinguish "feed doesn't cover this" from "fetch failed".
+- Tests: TDD where practical (write the failing test first). Keep files focused.
+
+## Reference docs
+
+- Design (port, don't redesign): `defi-risk-agg-poc-design/` (`styles.css`, `data.js`, JSX).
+- Spec: `docs/superpowers/specs/2026-06-04-defi-risk-aggregator-poc-design.md` (+ addendum).
+- Implementation plan: `docs/superpowers/plans/2026-06-04-defi-risk-aggregator-poc.md`.
+- Charter (no-composite): `CHARTER.md`. RFP background only: `OpenRisk_RFP_v0.md`.
+
+## Workflow notes
+
+- **Plans get a Codex CLI review before finalizing** (`codex exec … "<review>"`),
+  then findings are incorporated.
+- **Frontend visual design is produced in Claude Design** from a written brief, then
+  ported into `packages/web` (CSS Modules) — component names/props kept in sync with the plan.
+- **Keep this file and `README.md` current**: if you change a command, directory, convention,
+  the data model, the stack, or a workflow, update them in the same PR.
+
+## License
+
+AGPL-3.0. This is a public good; keep it open, neutral, and forkable.
