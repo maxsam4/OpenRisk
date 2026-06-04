@@ -40,4 +40,14 @@ describe("findForbiddenKeys (recursive no-composite guard)", () => {
   it("returns nothing for clean data", () => {
     expect(findForbiddenKeys({ verbatim: "Stage 1", dimensions: [{ label: "Control", value: "High" }] })).toEqual([]);
   });
+  it("catches camelCase / snake_case derived-metric names a substring denylist would miss", () => {
+    for (const key of ["overallScore", "riskTier", "riskGrade", "protocolRank", "weightedRank", "composite_score", "aggregate_index"]) {
+      expect(findForbiddenKeys({ [key]: 1 }), key).not.toEqual([]);
+    }
+  });
+  it("does not false-positive on legitimate schema keys", () => {
+    const ok = { coverageScope: "x", coverageNote: "y", displayOrder: 0, sourceStatus: "ok",
+      sourceUrl: "u", chainId: 1, site: "s", category: "Lending", verbatim: "Stage 1" };
+    expect(findForbiddenKeys(ok)).toEqual([]);
+  });
 });

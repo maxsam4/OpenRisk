@@ -27,6 +27,11 @@ describe("validateDataset", () => {
     expect(r.ok).toBe(false);
     expect(r.errors.join("\n")).toMatch(/unknown protocol.*ghost/i);
   });
+  it("fails on a duplicate protocol id (would otherwise be silently deduped)", () => {
+    const r = validateDataset({ ...full, protocols: [protocols[0], { ...protocols[0] }] });
+    expect(r.ok).toBe(false);
+    expect(r.errors.join("\n")).toMatch(/duplicate protocol id.*aave/i);
+  });
   it("fails on a denylisted composite key nested anywhere in the data", () => {
     const r = validateDataset({ ...full, governance: [{ protocolId: "aave", items: [], rank: 1 }] });
     expect(r.ok).toBe(false);

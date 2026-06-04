@@ -7,8 +7,12 @@ vi.mock("next/navigation", () => ({
 }));
 
 import { SummaryMatrix } from "../components/SummaryMatrix";
+import { FeedCard } from "../components/FeedCard";
 import { getDataset, getTvlSnapshot } from "../lib/data";
 import { computeDataStatus } from "../lib/coverage";
+
+const SYNTHESIS_RE =
+  /overall score|risk score|aggregate score|safety score|composite rating|rank #|ranked #|sort by score|sort by rank/;
 
 describe("no-synthesis UI guard", () => {
   it("renders no composite score / rank / sort-by-score control", () => {
@@ -67,5 +71,20 @@ describe("no-synthesis UI guard", () => {
       .sort((a, b) => a.displayOrder - b.displayOrder)
       .map((f) => f.name);
     expect(headerCells).toEqual(expected);
+  });
+
+  it("FeedCard shows the feed's verbatim verdict alongside dimensions, with no synthesis", () => {
+    const { feeds, ratings } = getDataset();
+    const feed = feeds.find((f) => f.id === "defipunkd")!;
+    // Lido×DeFiPunk'd is a multi-dimension cell that ALSO carries a tier headline.
+    const cell = ratings.find((r) => r.protocolId === "lido" && r.feedId === "defipunkd")!;
+    const { container } = render(<FeedCard feed={feed} cell={cell} />);
+    const text = (container.textContent ?? "").toLowerCase();
+    // The verbatim verdict must not be hidden just because dimensions exist.
+    expect(text).toContain("silver tier");
+    // Still no synthesized score/rank affordance on the detail-page card.
+    expect(text).not.toMatch(SYNTHESIS_RE);
+    expect(container.querySelector("[data-score]")).toBeNull();
+    expect(container.querySelector("[data-rank]")).toBeNull();
   });
 });

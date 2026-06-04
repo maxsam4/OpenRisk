@@ -44,5 +44,14 @@ export async function fetchSafeConfig({
   if (typeof data?.threshold !== "number" || !Array.isArray(data?.owners)) {
     throw new Error(`safe response shape changed for ${address}`);
   }
-  return { threshold: data.threshold as number, owners: data.owners as string[] };
+  const owners = data.owners as unknown[];
+  if (owners.length === 0 || !owners.every((o) => typeof o === "string" && ADDR_RE.test(o))) {
+    throw new Error(`safe response has malformed owner address(es) for ${address}`);
+  }
+  // A real multisig satisfies 1 <= threshold <= owners; anything else is a corrupt
+  // / unexpected response we must not propagate as governance fact.
+  if (data.threshold < 1 || data.threshold > owners.length) {
+    throw new Error(`safe threshold ${data.threshold} out of range (1..${owners.length}) for ${address}`);
+  }
+  return { threshold: data.threshold as number, owners: owners as string[] };
 }

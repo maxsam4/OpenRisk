@@ -70,7 +70,8 @@ export function SummaryMatrix({
   }, []);
 
   // Keep the URL in sync via the History API (shareable view, no history spam,
-  // no scroll jump). Use location.search on pathname "/" — NOT Next useSearchParams.
+  // no scroll jump). Use location.search on the CURRENT pathname — NOT a hard-coded
+  // "/" (which would drop a GitHub Pages basePath) and NOT Next useSearchParams.
   useEffect(() => {
     const sp = new URLSearchParams();
     if (q.trim()) sp.set("q", q.trim());
@@ -79,7 +80,7 @@ export function SummaryMatrix({
     if (feedFilter !== "All") sp.set("feed", feedFilter);
     if (!(sort.key === "tvl" && sort.dir === "desc")) sp.set("sort", sort.key + ":" + sort.dir);
     const qs = sp.toString();
-    const newUrl = "/" + (qs ? "?" + qs : "");
+    const newUrl = location.pathname + (qs ? "?" + qs : "");
     const current = location.pathname + location.search;
     if (current !== newUrl) history.replaceState(null, "", newUrl);
   }, [q, cat, cov, feedFilter, sort]);

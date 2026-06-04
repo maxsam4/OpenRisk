@@ -35,7 +35,7 @@ export function FeedCard({ feed, cell }: { feed: Feed; cell: RatingCell | null }
         </div>
       ) : (
         <div className={styles.feedBody}>
-          {rating && rating.verbatim && !dims ? (
+          {rating && rating.verbatim ? (
             <div className={styles.verbatimLine}>
               <span className="faint">Rating&nbsp;</span>
               <span style={{ fontWeight: 700, color: "var(--text)" }}>{rating.verbatim}</span>
@@ -43,7 +43,7 @@ export function FeedCard({ feed, cell }: { feed: Feed; cell: RatingCell | null }
           ) : null}
 
           {dims ? (
-            <div className={styles.dims}>
+            <div className={styles.dims} style={{ marginTop: "8px" }}>
               {dims.map((d) => (
                 <div className={styles.dimRow} key={d.label}>
                   <span className="muted">{d.label}</span>

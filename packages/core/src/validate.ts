@@ -33,6 +33,21 @@ export function validateDataset(input: DatasetInput): ValidationResult {
   const protocolIds = new Set(protocols.map((p) => p.id));
   const feedIds = new Set(feeds.map((f) => f.id));
 
+  // Duplicate ids would be silently deduped by the Sets above (and by id-keyed
+  // lookups in the web/ingestion layers), masking a real data error — reject them.
+  const reportDuplicates = (ids: string[], label: string): void => {
+    const seenIds = new Set<string>();
+    for (const id of ids) {
+      if (seenIds.has(id)) errors.push(`duplicate ${label} id: ${id}`);
+      seenIds.add(id);
+    }
+  };
+  reportDuplicates(protocols.map((p) => p.id), "protocol");
+  reportDuplicates(feeds.map((f) => f.id), "feed");
+  reportDuplicates(governance.map((g) => g.protocolId), "governance");
+  reportDuplicates(audits.map((a) => a.protocolId), "audits");
+  reportDuplicates(incidents.map((i) => i.protocolId), "incidents");
+
   const seen = new Set<string>();
   for (const c of ratings) {
     if (!protocolIds.has(c.protocolId)) errors.push(`rating references unknown protocol: ${c.protocolId}`);

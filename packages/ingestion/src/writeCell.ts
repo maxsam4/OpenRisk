@@ -51,16 +51,25 @@ export function writeCellSuccess(args: WriteCellSuccess): void {
     // Mutate the existing rating map in place when present (preserves the file's
     // double-quote scalar style for clean, idempotent diffs); otherwise create one.
     const existing = doc.get("rating") as YAMLMap | null | undefined;
+    const dims = cell.rating.dimensions;
     if (existing && typeof existing.set === "function") {
       existing.set("verbatim", dq(doc, cell.rating.verbatim));
       existing.set("sourceUrl", dq(doc, cell.rating.sourceUrl));
+      // Write the adapter's rating EXACTLY — never leave a stale dimensions block
+      // from a previous shape (the adapter is the source of truth for this cell).
+      if (dims && dims.length) existing.set("dimensions", doc.createNode(dims));
+      else if (existing.has("dimensions")) existing.delete("dimensions");
     } else {
       const rating = doc.createNode({}) as YAMLMap;
       rating.set("verbatim", dq(doc, cell.rating.verbatim));
       rating.set("sourceUrl", dq(doc, cell.rating.sourceUrl));
+      if (dims && dims.length) rating.set("dimensions", doc.createNode(dims));
       doc.set("rating", rating);
     }
   }
+  // `coverageScope` is only meaningful (and only schema-valid as required) for
+  // `partial`; clear a stale one if the refreshed cell is no longer partial.
+  if (cell.coverage !== "partial" && doc.has("coverageScope")) doc.delete("coverageScope");
 
   const nowIso = now.toISOString();
   doc.setIn(["provenance", "method"], "auto");

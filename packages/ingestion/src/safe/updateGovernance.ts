@@ -83,19 +83,25 @@ export function updateGovernanceSuccess(
 
   const ownersCount = config.owners.length;
 
+  // A tracked Safe MUST have the stable-key items the service updates. If they're
+  // absent, refuse loudly rather than write a fresh-looking `ok` that changed nothing
+  // (the CLI catches this and records `safeApiStatus: failed`, preserving curated data).
   const thresholdItem = findItemByKey(doc, "threshold");
-  if (thresholdItem) {
-    thresholdItem.set("value", `${config.threshold} / ${ownersCount}`);
+  const adminItem = findItemByKey(doc, "admin-multisig");
+  if (!thresholdItem || !adminItem) {
+    throw new Error(
+      `governance ${protocolId}: tracked Safe is missing required keyed item(s) ` +
+        `(${!thresholdItem ? "threshold " : ""}${!adminItem ? "admin-multisig" : ""}).`,
+    );
   }
 
-  const adminItem = findItemByKey(doc, "admin-multisig");
+  thresholdItem.set("value", `${config.threshold} / ${ownersCount}`);
+
   const safe = doc.get("safe") as YAMLMap;
   const safeAddress = safe.get("address") as string;
-  if (adminItem) {
-    adminItem.set("value", safeAddress);
-    if (adminItem.has("link")) {
-      adminItem.set("link", `https://etherscan.io/address/${safeAddress}`);
-    }
+  adminItem.set("value", safeAddress);
+  if (adminItem.has("link")) {
+    adminItem.set("link", `https://etherscan.io/address/${safeAddress}`);
   }
 
   doc.set("summary", recomputeSummary(doc.get("summary"), config.threshold, ownersCount));

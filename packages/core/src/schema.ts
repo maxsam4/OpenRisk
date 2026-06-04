@@ -80,17 +80,35 @@ export const RatingCellSchema = z.object({
 // implies a derived/aggregate/normalized score, anywhere in the parsed data — PLUS a
 // value-aware rule: a key named `rating` is fine for the verbatim string, but a *numeric*
 // `rating` (a project-style score) is forbidden.
-export const FORBIDDEN_KEY_PATTERNS = [
-  /^score$/i, /^rank$/i, /^tier$/i, /^grade$/i, /^composite/i,
-  /^normalized/i, /^aggregate/i, /^weight/i, /^index$/i, /riskscore/i,
+//
+// Matching is TOKEN-based (not substring) so camelCase / snake_case / kebab-case
+// composites are caught too — `overallScore`, `riskTier`, `protocolRank`,
+// `weightedRank`, `composite_score` all tokenize to a forbidden stem. A substring
+// denylist would miss these; an over-broad substring match would false-positive
+// (e.g. "scope" contains no forbidden token, but "score" does).
+export const FORBIDDEN_KEY_STEMS = [
+  "score", "rank", "ranking", "tier", "grade", "composite",
+  "normalized", "normalised", "aggregate", "weight", "weighted", "index", "overall",
 ];
+// Split a key into lowercase word tokens across camelCase, snake_case, kebab-case.
+function tokenizeKey(key: string): string[] {
+  return key
+    .replace(/([a-z0-9])([A-Z])/g, "$1 $2")
+    .replace(/[_-]+/g, " ")
+    .toLowerCase()
+    .split(/\s+/)
+    .filter(Boolean);
+}
+function isForbiddenKey(key: string): boolean {
+  return tokenizeKey(key).some((tok) => FORBIDDEN_KEY_STEMS.some((stem) => tok === stem || tok.startsWith(stem)));
+}
 export function findForbiddenKeys(value: unknown, path = ""): string[] {
   const hits: string[] = [];
   if (Array.isArray(value)) {
     value.forEach((v, i) => hits.push(...findForbiddenKeys(v, `${path}[${i}]`)));
   } else if (value && typeof value === "object") {
     for (const [k, v] of Object.entries(value)) {
-      if (FORBIDDEN_KEY_PATTERNS.some((re) => re.test(k))) hits.push(`${path}.${k}`);
+      if (isForbiddenKey(k)) hits.push(`${path}.${k}`);
       // value-aware: a `rating` key is allowed (verbatim string/object) but a NUMERIC
       // rating is a project-style score → forbidden.
       if (/^rating$/i.test(k) && typeof v === "number") hits.push(`${path}.${k} (numeric rating)`);
@@ -125,7 +143,16 @@ export const GovernanceSchema = z.object({
   }).optional(),
   items: z.array(GovernanceItem),
   provenance: Provenance,                      // set-level: method/checkedUrl/lastChecked/...
-}).strict();
+}).strict().superRefine((g, ctx) => {
+  // A tracked Safe and the "no tracked Safe" flag are mutually exclusive: `n/a`
+  // must NOT carry a `safe` block, and a live status (ok/stale/failed) requires one.
+  if (g.safeApiStatus === "n/a" && g.safe) {
+    ctx.addIssue({ code: "custom", message: "safeApiStatus 'n/a' must not include a safe block" });
+  }
+  if (g.safeApiStatus !== "n/a" && !g.safe) {
+    ctx.addIssue({ code: "custom", message: "safeApiStatus ok/stale/failed requires a safe block" });
+  }
+});
 
 // Factual histories — records with sources, NOT project-assigned risk grades.
 // Field names match the design (firm/url; severity/url). `date` allows YYYY-MM.
