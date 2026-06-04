@@ -1,0 +1,68 @@
+.feedcard {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 16px 16px 14px;
+  display: flex;
+  flex-direction: column;
+  min-height: 218px;
+  transition: border-color var(--ease) 0.15s;
+}
+.feedcard:hover {
+  border-color: var(--text-3);
+}
+.feedFocus {
+  color: var(--text-2);
+  font-size: 13px;
+  line-height: 1.6;
+  margin: 10px 0 0;
+}
+.feedBody {
+  margin-top: 12px;
+  flex: 1;
+}
+.verbatimLine {
+  font-size: 13px;
+}
+.dims {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.dimRow {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: baseline;
+  gap: 12px;
+  font-size: 12.5px;
+  padding: 5px 0;
+  border-bottom: 1px dotted var(--border);
+}
+.dimRow > span:last-child {
+  white-space: nowrap;
+}
+.dimRow:last-child {
+  border-bottom: 0;
+}
+.scopeNote {
+  margin-top: 10px;
+  font-size: 12.5px;
+  line-height: 1.55;
+  color: var(--text-2);
+  background: var(--surface-2);
+  border-radius: var(--radius-sm);
+  padding: 8px 10px;
+}
+.feedFoot {
+  margin-top: 14px;
+  padding-top: 11px;
+  border-top: 1px solid var(--border-soft);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.feedFoot :global(.tnum) {
+  white-space: nowrap;
+}

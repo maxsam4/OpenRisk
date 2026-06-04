@@ -1,0 +1,24 @@
+/* coverage bar — proportional fill (covered + partial of all feeds). NOT a score */
+.covbar {
+  display: inline-flex;
+  align-items: center;
+}
+.covbarTrack {
+  width: 72px;
+  height: 7px;
+  border-radius: 4px;
+  flex: none;
+  background: var(--surface-2);
+  box-shadow: inset 0 0 0 1px var(--border);
+  display: flex;
+  overflow: hidden;
+}
+.covbarFill {
+  height: 100%;
+}
+.covbarCov {
+  background: var(--cov-covered);
+}
+.covbarPart {
+  background: var(--cov-partial);
+}

@@ -1,0 +1,187 @@
+/* Summary-matrix structural classes (shared by SummaryMatrix + MatrixCell).
+   Owns: .matrix-wrap, table.matrix + descendants, .sticky-col, .expander,
+   .subrow, .gly*, .spread-mark, .statusline, .gov-mini, .feeds-mini.
+
+   The matrix markup uses many compound/descendant class names ("gly partial",
+   "feedcol", "covbar-cov", element selectors). We scope the few class names that
+   components reference via `styles[...]` and use :global() for the inner names the
+   markup writes directly, so the ported markup stays verbatim. */
+
+.matrixWrap {
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--surface);
+  overflow: auto;
+}
+.matrixWrap table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 760px;
+}
+.matrixWrap thead th {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  background: var(--surface);
+  text-align: left;
+  font-weight: 400;
+  color: var(--text-2);
+  font-size: 11.5px;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  padding: 14px 14px;
+  border-bottom: 1px solid var(--border);
+  white-space: nowrap;
+}
+.matrixWrap thead th:global(.sortable) {
+  cursor: pointer;
+  user-select: none;
+}
+.matrixWrap thead th:global(.sortable):hover {
+  color: var(--text);
+}
+.matrixWrap thead th :global(.arr) {
+  color: var(--accent);
+  margin-left: 5px;
+}
+.matrixWrap thead th:global(.feedcol) {
+  text-align: center;
+}
+.matrixWrap tbody td {
+  padding: 0 14px;
+  border-bottom: 1px solid var(--border-soft);
+  font-size: 13px;
+  height: 64px;
+}
+.matrixWrap tbody tr:last-child td {
+  border-bottom: 0;
+}
+.matrixWrap tbody tr:global(.prow):hover td {
+  background: var(--surface-2);
+}
+.matrixWrap td:global(.feedcol) {
+  text-align: center;
+  white-space: nowrap;
+}
+.matrixWrap th:global(.feedcol),
+.matrixWrap td:global(.feedcol) {
+  min-width: 96px;
+}
+.matrixWrap td:global(.name-cell) {
+  cursor: pointer;
+}
+.matrixWrap :global(.pname) {
+  font-weight: 700;
+  font-size: 14px;
+}
+.matrixWrap td:global(.name-cell) :global(.pname):hover {
+  color: var(--accent);
+}
+.matrixWrap td:global(.name-cell):focus-visible {
+  outline-offset: -2px;
+}
+.matrixWrap thead th:global(.sortable):focus-visible {
+  outline-offset: -2px;
+}
+
+.stickyCol {
+  position: sticky;
+  left: 0;
+  background: var(--surface);
+  z-index: 1;
+}
+.matrixWrap tbody tr:global(.prow):hover .stickyCol {
+  background: var(--surface-2);
+}
+
+.expander {
+  display: inline-flex;
+  width: 16px;
+  justify-content: center;
+  color: var(--text-3);
+  cursor: pointer;
+  transition: transform var(--ease) 0.15s;
+  user-select: none;
+}
+.expander:global(.open) {
+  transform: rotate(90deg);
+}
+
+.subrow td {
+  height: 48px;
+  background: color-mix(in srgb, var(--surface-2) 55%, transparent);
+}
+.subrow :global(.pname) {
+  font-weight: 400;
+  font-size: 13px;
+  color: var(--text-2);
+  padding-left: 30px;
+}
+
+.govMini {
+  font-size: 12.5px;
+  color: var(--text-2);
+}
+.feedsMini {
+  font-size: 12.5px;
+  color: var(--text-2);
+}
+
+/* matrix coverage glyph (compact cell) — MatrixCell writes "gly covered|partial|none" */
+.gly {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 14px;
+}
+.gly :global(.dot) {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+.gly:global(.covered) :global(.dot) {
+  background: var(--cov-covered);
+}
+.gly:global(.partial) :global(.dot) {
+  background: var(--cov-partial);
+}
+.gly:global(.none) {
+  color: var(--text-3);
+}
+.gly :global(.lbl) {
+  font-weight: 700;
+  font-size: 13px;
+  color: var(--text);
+  white-space: nowrap;
+}
+.gly :global(.lbl-amber) {
+  color: var(--cov-partial);
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.spreadMark {
+  color: var(--accent);
+  font-size: 13px;
+  cursor: default;
+  line-height: 1;
+}
+
+.statusline {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  font-size: 12px;
+  color: var(--text-3);
+  margin-top: 14px;
+}
+.statusline > span {
+  white-space: nowrap;
+}
+.statusline :global(.pip) {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--cov-covered);
+}

@@ -1,0 +1,78 @@
+.topnav {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: color-mix(in srgb, var(--bg-elev) 88%, transparent);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--border);
+}
+.topnavInner {
+  max-width: var(--maxw);
+  margin: 0 auto;
+  padding: 14px var(--gutter);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.brand {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  cursor: pointer;
+  text-decoration: none;
+}
+.brand:hover {
+  text-decoration: none;
+}
+.mark {
+  font-weight: 700;
+  font-size: 16px;
+  letter-spacing: -0.02em;
+  color: var(--text);
+}
+.tag {
+  font-size: 12px;
+  color: var(--text-3);
+  white-space: nowrap;
+}
+.navlinks {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+}
+.navlink {
+  font-size: 13px;
+  color: var(--text-2);
+  cursor: pointer;
+  background: none;
+  border: 0;
+  font-family: var(--mono);
+  padding: 0;
+  text-decoration: none;
+  transition: color var(--ease) 0.15s;
+}
+.navlink:hover,
+.navlink.active {
+  color: var(--text);
+  text-decoration: none;
+}
+
+@media (max-width: 900px) {
+  .topnavInner {
+    padding: 12px 20px;
+  }
+  .navlinks {
+    gap: 18px;
+  }
+  .tag {
+    display: none;
+  }
+}
+@media (max-width: 560px) {
+  .navlink {
+    font-size: 12px;
+  }
+  .navlinks {
+    gap: 14px;
+  }
+}
