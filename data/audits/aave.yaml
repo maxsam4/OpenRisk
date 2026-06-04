@@ -1,0 +1,15 @@
+protocolId: aave
+audits:
+  - firm: "OpenZeppelin"
+    date: "2021-11"
+    url: "https://github.com/aave-dao/aave-v3-origin/blob/main/audits/2021-11-01_OpenZeppelin_AaveV3.pdf"
+  - firm: "Trail of Bits"
+    date: "2022-01"
+    url: "https://github.com/aave-dao/aave-v3-origin/blob/main/audits/2022-01-07_TrailOfBits_AaveV3.pdf"
+  - firm: "Sigma Prime"
+    date: "2022-01"
+    url: "https://github.com/aave-dao/aave-v3-origin/blob/main/audits/2022-01-27_SigmaPrime_AaveV3.pdf"
+  - firm: "MixBytes"
+    date: "2024-05"
+    scope: "Aave v3.1"
+    url: "https://github.com/aave-dao/aave-v3-origin/blob/main/audits/2024-05-02_MixBytes_AaveV3.1.pdf"

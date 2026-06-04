@@ -1,0 +1,12 @@
+protocolId: morpho
+feedId: defiscan
+coverage: covered
+rating:
+  verbatim: "Stage 1"
+  sourceUrl: "https://www.defiscan.info/protocols/morpho/ethereum"
+coverageNote: "Verbatim decentralization stage from DeFiScan's Morpho (Ethereum) review."
+provenance:
+  method: manual
+  checkedUrl: "https://www.defiscan.info/protocols/morpho/ethereum"
+  lastChecked: "2026-06-04"
+  curator: "openrisk"

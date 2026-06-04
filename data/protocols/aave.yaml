@@ -1,0 +1,13 @@
+id: aave
+name: Aave
+category: Lending
+family: aave
+versions: ["v3", "v4"]
+chain: "Ethereum + 20 chains"
+site: "aave.com"
+blurb: "Leading lending protocol. v3 runs cross-chain isolated markets; v4 (launched on Ethereum in 2026) introduces a unified liquidity hub. Long audit history, mature on-chain governance."
+links:
+  website: "https://aave.com"
+  docs: "https://aave.com/docs"
+  github: "https://github.com/aave-dao"
+defillamaSlugs: ["aave-v3", "aave-v2"]

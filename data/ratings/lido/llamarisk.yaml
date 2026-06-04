@@ -1,0 +1,10 @@
+protocolId: lido
+feedId: llamarisk
+coverage: not-yet-covered
+rating: null
+coverageNote: "stETH appears in LlamaRisk's Aave collateral analyses, but no standalone Lido protocol report was found on the research index at last check."
+provenance:
+  method: manual
+  checkedUrl: "https://www.llamarisk.com/research"
+  lastChecked: "2026-06-04"
+  curator: "openrisk"

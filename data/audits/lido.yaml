@@ -1,0 +1,18 @@
+protocolId: lido
+audits:
+  - firm: "ChainSecurity"
+    date: "2022-08"
+    scope: "Lido smart contracts"
+    url: "https://github.com/lidofinance/audits/blob/main/ChainSecurity%20Code%20Assessment%20of%20the%20Lido%20Smart%20Contracts%20Report%2008-22.pdf"
+  - firm: "ChainSecurity"
+    date: "2023-02"
+    scope: "Staking Router"
+    url: "https://github.com/lidofinance/audits/blob/main/ChainSecurity%20Lido%20Staking%20Router%20audit%20report%2002-23.pdf"
+  - firm: "Certora"
+    date: "2023-04"
+    scope: "Lido V2"
+    url: "https://github.com/lidofinance/audits/blob/main/Certora%20Lido%20V2%20Audit%20Report%2004-23.pdf"
+  - firm: "Certora"
+    date: "2025-02"
+    scope: "Dual Governance"
+    url: "https://github.com/lidofinance/audits/blob/main/Certora%20Dual%20Governance%20Audit%20Report%2002-2025.pdf"

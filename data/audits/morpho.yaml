@@ -1,0 +1,14 @@
+protocolId: morpho
+audits:
+  - firm: "OpenZeppelin"
+    date: "2023-10"
+    scope: "Morpho Blue + Speed Jump IRM"
+    url: "https://github.com/morpho-org/morpho-blue/blob/main/audits/2023-10-13-morpho-blue-and-speed-jump-irm-open-zeppelin.pdf"
+  - firm: "Cantina"
+    date: "2023-11"
+    scope: "Managed review"
+    url: "https://github.com/morpho-org/morpho-blue/blob/main/audits/2023-11-13-morpho-blue-cantina-managed-review.pdf"
+  - firm: "Cantina"
+    date: "2024-01"
+    scope: "Competition"
+    url: "https://github.com/morpho-org/morpho-blue/blob/main/audits/2024-01-05-morpho-blue-cantina-competition.pdf"

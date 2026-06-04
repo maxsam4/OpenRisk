@@ -1,0 +1,10 @@
+protocolId: lido
+incidents:
+  - date: "2024-05"
+    title: "Node Operator (Numic) security incident disclosure"
+    summary: "A Lido node operator's developer machine was breached and the incident disclosed. No Lido protocol contracts were compromised and no staker funds were affected."
+    url: "https://research.lido.fi/t/lido-on-ethereum-node-operator-numic-security-incident-disclosure-may-21-2024/7536"
+  - date: "2025-05"
+    title: "Emergency rotation of compromised Chorus One oracle"
+    summary: "A 2021-vintage Chorus One oracle hot-wallet key was compromised; ~1.46 ETH of gas was drained. The 5-of-9 oracle quorum meant no staker funds were at risk, and an emergency DAO vote rotated the key."
+    url: "https://research.lido.fi/t/emergency-rotation-of-compromised-chorus-one-oracle/10037"

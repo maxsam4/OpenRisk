@@ -1,0 +1,11 @@
+id: spark
+name: Spark
+category: Lending
+chain: "Ethereum + Gnosis"
+site: "spark.fi"
+blurb: "Sky (formerly MakerDAO) sub-protocol for borrowing and saving, built on an Aave v3 fork (SparkLend) and integrated with USDS and the Sky governance stack."
+links:
+  website: "https://spark.fi"
+  docs: "https://docs.spark.fi"
+  github: "https://github.com/sparkdotfi"
+defillamaSlugs: ["sparklend", "spark-liquidity-layer"]

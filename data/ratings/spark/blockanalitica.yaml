@@ -1,0 +1,13 @@
+protocolId: spark
+feedId: blockanalitica
+coverage: partial
+rating:
+  verbatim: "Active SparkLend risk dashboard"
+  sourceUrl: "https://spark.blockanalitica.com/"
+coverageScope: "BlockAnalitica's Spark dashboard covers SparkLend lending-market risk (collateral health, liquidations); Spark Savings and the Spark Liquidity Layer fall outside its lending-risk focus."
+coverageNote: "Quantitative on-chain lending dashboard; the feed publishes metrics rather than a single verdict label."
+provenance:
+  method: manual
+  checkedUrl: "https://spark.blockanalitica.com/"
+  lastChecked: "2026-06-04"
+  curator: "openrisk"

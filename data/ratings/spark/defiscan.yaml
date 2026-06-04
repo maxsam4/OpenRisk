@@ -1,0 +1,12 @@
+protocolId: spark
+feedId: defiscan
+coverage: covered
+rating:
+  verbatim: "Stage 0"
+  sourceUrl: "https://www.defiscan.info/protocols/spark/ethereum"
+coverageNote: "Verbatim decentralization stage from DeFiScan's Spark (Ethereum) review."
+provenance:
+  method: manual
+  checkedUrl: "https://www.defiscan.info/protocols/spark/ethereum"
+  lastChecked: "2026-06-04"
+  curator: "openrisk"

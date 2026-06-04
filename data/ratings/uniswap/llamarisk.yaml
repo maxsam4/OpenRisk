@@ -1,0 +1,10 @@
+protocolId: uniswap
+feedId: llamarisk
+coverage: not-yet-covered
+rating: null
+coverageNote: "No published LlamaRisk Uniswap report at last check; LlamaRisk focuses on lending collateral and governance."
+provenance:
+  method: manual
+  checkedUrl: "https://www.llamarisk.com/research"
+  lastChecked: "2026-06-04"
+  curator: "openrisk"

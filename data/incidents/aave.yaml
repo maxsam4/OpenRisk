@@ -1,0 +1,6 @@
+protocolId: aave
+incidents:
+  - date: "2023-08"
+    title: "Blameless Post-Mortem: Curve (Aug 8, 2023)"
+    summary: "A large CRV-collateralised borrow position created bad-debt risk during a market sell-off; the situation was managed through governance parameter changes and debt repayment. No user funds were lost."
+    url: "https://governance.aave.com/t/blameless-post-mortem-curve-aug-8-2023/14386"

@@ -1,0 +1,41 @@
+protocolId: lido
+summary: "3/5 · DAO vote"
+safeApiStatus: ok
+safe:
+  address: "0x73b047fe6337183A454c5217241D780a932777bD"
+  chainId: 1
+items:
+  - key: type
+    label: "Type"
+    value: "Aragon DAO + emergency multisigs"
+    tag: onchain
+    sourceUrl: "https://docs.lido.fi/lido-dao/"
+  - label: "Aragon Agent (treasury / admin executor)"
+    value: "0x3e40D73EB977Dc6a537aF587D48316feE66E9C8c"
+    tag: onchain
+    sourceUrl: "https://docs.lido.fi/lido-dao/"
+    link: "https://etherscan.io/address/0x3e40D73EB977Dc6a537aF587D48316feE66E9C8c"
+  - key: admin-multisig
+    label: "Emergency Brakes multisig"
+    value: "0x73b047fe6337183A454c5217241D780a932777bD"
+    tag: onchain
+    sourceUrl: "https://docs.lido.fi/multisigs/emergency-brakes/"
+    link: "https://etherscan.io/address/0x73b047fe6337183A454c5217241D780a932777bD"
+  - key: threshold
+    label: "Emergency Brakes threshold"
+    value: "3 / 5"
+    tag: onchain
+    sourceUrl: "https://api.safe.global/tx-service/eth/api/v1/safes/0x73b047fe6337183A454c5217241D780a932777bD/"
+  - label: "GateSeal committee"
+    value: "3 / 6 — time-boxed contract pause"
+    tag: onchain
+    sourceUrl: "https://docs.lido.fi/multisigs/emergency-brakes/"
+  - label: "Upgrade capability"
+    value: "Yes — via Aragon DAO vote"
+    tag: curated
+    sourceUrl: "https://docs.lido.fi/lido-dao/"
+provenance:
+  method: manual
+  checkedUrl: "https://docs.lido.fi/multisigs/emergency-brakes/"
+  lastChecked: "2026-06-04"
+  curator: "openrisk"

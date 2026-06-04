@@ -1,0 +1,6 @@
+protocolId: morpho
+incidents:
+  - date: "2025-04"
+    title: "White-hat intercepts ~$2.6M Morpho front-end exploit"
+    summary: "A faulty Morpho App front-end update introduced a flaw; a white-hat operator front-ran and returned the at-risk transaction. No protocol-contract compromise and no user funds were lost."
+    url: "https://crypto.news/morpho-labs-crypto-hack-thwarted-as-white-hat-intercepts-2-6m-after-frontend-exploit/"

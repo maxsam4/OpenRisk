@@ -1,0 +1,36 @@
+protocolId: morpho
+summary: "5/9 · immutable core"
+safeApiStatus: ok
+safe:
+  address: "0xcBa28b38103307Ec8dA98377ffF9816C164f9AFa"
+  chainId: 1
+items:
+  - key: type
+    label: "Type"
+    value: "Immutable Morpho Blue core + DAO multisig"
+    tag: onchain
+    sourceUrl: "https://docs.morpho.org/learn/governance/organization/"
+  - key: admin-multisig
+    label: "Morpho DAO multisig"
+    value: "0xcBa28b38103307Ec8dA98377ffF9816C164f9AFa"
+    tag: onchain
+    sourceUrl: "https://docs.morpho.org/learn/governance/organization/"
+    link: "https://etherscan.io/address/0xcBa28b38103307Ec8dA98377ffF9816C164f9AFa"
+  - key: threshold
+    label: "Threshold"
+    value: "5 / 9"
+    tag: onchain
+    sourceUrl: "https://api.safe.global/tx-service/eth/api/v1/safes/0xcBa28b38103307Ec8dA98377ffF9816C164f9AFa/"
+  - label: "Core upgradeability"
+    value: "None — Morpho Blue core smart contracts are immutable"
+    tag: onchain
+    sourceUrl: "https://docs.morpho.org/learn/governance/organization/"
+  - label: "Vault layer"
+    value: "MetaMorpho vaults are curator-reconfigurable with timelocks"
+    tag: curated
+    sourceUrl: "https://docs.morpho.org/learn/governance/organization/"
+provenance:
+  method: manual
+  checkedUrl: "https://docs.morpho.org/learn/governance/organization/"
+  lastChecked: "2026-06-04"
+  curator: "openrisk"

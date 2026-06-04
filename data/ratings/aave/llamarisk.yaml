@@ -1,0 +1,12 @@
+protocolId: aave
+feedId: llamarisk
+coverage: covered
+rating:
+  verbatim: "Ongoing Aave risk coverage — collateral onboarding, governance, and incident reports"
+  sourceUrl: "https://www.llamarisk.com/research/pegkeeper-onboarding-review-aave-s-gho"
+coverageNote: "LlamaRisk is Aave's onboarded risk service provider; the linked GHO PegKeeper onboarding review is one example of its ongoing Aave research."
+provenance:
+  method: manual
+  checkedUrl: "https://www.llamarisk.com/research/pegkeeper-onboarding-review-aave-s-gho"
+  lastChecked: "2026-06-04"
+  curator: "openrisk"

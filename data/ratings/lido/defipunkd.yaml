@@ -1,0 +1,18 @@
+protocolId: lido
+feedId: defipunkd
+coverage: covered
+rating:
+  verbatim: "Silver tier · Weak AI consensus on all dimensions"
+  dimensions:
+    - { label: "Control", value: "tentative — Short timelock with insider emergency override" }
+    - { label: "Ability to Exit", value: "tentative — Finalized claims safe; new requests pausable indefinitely by governance" }
+    - { label: "Autonomy", value: "tentative — Oracle committee governs rebase reports" }
+    - { label: "Open Access", value: "tentative — No user allowlists or geofences" }
+    - { label: "Verifiability", value: "tentative — Verified source + multiple recent audits" }
+  sourceUrl: "https://defipunkd.com/protocol/lido"
+coverageNote: "Most complete DeFiPunk'd entry among the POC protocols; each dimension's status and note are shown verbatim."
+provenance:
+  method: manual
+  checkedUrl: "https://defipunkd.com/protocol/lido"
+  lastChecked: "2026-06-04"
+  curator: "openrisk"

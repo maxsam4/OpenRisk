@@ -1,0 +1,10 @@
+protocolId: lido
+feedId: blockanalitica
+coverage: not-yet-covered
+rating: null
+coverageNote: "Liquid-staking protocols fall outside BlockAnalitica's lending-market risk scope; no Lido dashboard is published."
+provenance:
+  method: manual
+  checkedUrl: "https://blockanalitica.com/"
+  lastChecked: "2026-06-04"
+  curator: "openrisk"

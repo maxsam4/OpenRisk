@@ -1,0 +1,18 @@
+protocolId: uniswap
+feedId: defipunkd
+coverage: covered
+rating:
+  verbatim: "Wood tier · At least one model submission, no quorum yet"
+  dimensions:
+    - { label: "Control", value: "unknown" }
+    - { label: "Ability to Exit", value: "unknown" }
+    - { label: "Autonomy", value: "unknown" }
+    - { label: "Open Access", value: "unknown" }
+    - { label: "Verifiability", value: "green" }
+  sourceUrl: "https://defipunkd.com/protocol/uniswap"
+coverageNote: "Preliminary DeFiPunk'd entry (Uniswap V3); only Verifiability has a submission, the rest 'unknown'."
+provenance:
+  method: manual
+  checkedUrl: "https://defipunkd.com/protocol/uniswap"
+  lastChecked: "2026-06-04"
+  curator: "openrisk"

@@ -1,0 +1,8 @@
+id: blockanalitica
+name: BlockAnalitica
+type: Dashboard
+focus: "Risk Intelligence for DeFi Lending Protocols — on-chain dashboards tracking liquidations, collateral health, and market exposure."
+url: "https://blockanalitica.com"
+access: manual
+conflicts: null
+displayOrder: 1

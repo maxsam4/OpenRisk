@@ -1,0 +1,42 @@
+protocolId: aave
+summary: "4/7 · 1d"
+safeApiStatus: ok
+safe:
+  address: "0x2CFe3ec4d5a6811f4B8067F0DE7e47DfA938Aa30"
+  chainId: 1
+items:
+  - key: type
+    label: "Type"
+    value: "Aave Governance v3 + Guardian multisigs"
+    tag: onchain
+    sourceUrl: "https://github.com/bgd-labs/aave-address-book/blob/main/src/ts/GovernanceV3Ethereum.ts"
+  - key: admin-multisig
+    label: "Protocol Guardian (emergency admin)"
+    value: "0x2CFe3ec4d5a6811f4B8067F0DE7e47DfA938Aa30"
+    tag: onchain
+    sourceUrl: "https://github.com/bgd-labs/aave-address-book/blob/main/src/ts/MiscEthereum.ts"
+    link: "https://etherscan.io/address/0x2CFe3ec4d5a6811f4B8067F0DE7e47DfA938Aa30"
+  - key: threshold
+    label: "Guardian threshold"
+    value: "4 / 7"
+    tag: onchain
+    sourceUrl: "https://api.safe.global/tx-service/eth/api/v1/safes/0x2CFe3ec4d5a6811f4B8067F0DE7e47DfA938Aa30/"
+  - label: "Governance Guardian"
+    value: "5 / 9"
+    tag: onchain
+    sourceUrl: "https://api.safe.global/tx-service/eth/api/v1/safes/0xCe52ab41C40575B072A18C9700091Ccbe4A06710/"
+    link: "https://etherscan.io/address/0xCe52ab41C40575B072A18C9700091Ccbe4A06710"
+  - key: timelock
+    label: "Timelock"
+    value: "1 day (short executor) · 7 days (long executor)"
+    tag: onchain
+    sourceUrl: "https://aave.com/docs/ecosystem/governance"
+  - label: "Upgrade capability"
+    value: "Yes — per-market via governance"
+    tag: curated
+    sourceUrl: "https://aave.com/docs/ecosystem/governance"
+provenance:
+  method: manual
+  checkedUrl: "https://github.com/bgd-labs/aave-address-book/blob/main/src/ts/GovernanceV3Ethereum.ts"
+  lastChecked: "2026-06-04"
+  curator: "openrisk"

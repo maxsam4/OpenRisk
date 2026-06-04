@@ -1,0 +1,31 @@
+protocolId: uniswap
+summary: "Governor · 2d"
+safeApiStatus: "n/a"
+items:
+  - key: type
+    label: "Type"
+    value: "Governor Bravo + Timelock, no admin multisig"
+    tag: onchain
+    sourceUrl: "https://www.tally.xyz/gov/uniswap"
+  - label: "Timelock"
+    value: "2 days (172800s)"
+    tag: onchain
+    sourceUrl: "https://etherscan.io/address/0x1a9C8182C09F50C8318d769245beA52c32BE35BC"
+    link: "https://etherscan.io/address/0x1a9C8182C09F50C8318d769245beA52c32BE35BC"
+  - label: "Admin keys"
+    value: "None on core contracts — core is immutable"
+    tag: onchain
+    sourceUrl: "https://docs.uniswap.org"
+  - label: "Governance"
+    value: "UNI token-holder vote via Governor Bravo"
+    tag: onchain
+    sourceUrl: "https://www.tally.xyz/gov/uniswap"
+  - label: "Upgrade capability"
+    value: "Limited — fee switch via governance"
+    tag: curated
+    sourceUrl: "https://docs.uniswap.org"
+provenance:
+  method: manual
+  checkedUrl: "https://www.tally.xyz/gov/uniswap"
+  lastChecked: "2026-06-04"
+  curator: "openrisk"

@@ -1,0 +1,13 @@
+id: uniswap
+name: Uniswap
+category: DEX_AMM
+family: uniswap
+versions: ["v3", "v4", "UniswapX"]
+chain: "Ethereum + 40 chains"
+site: "uniswap.org"
+blurb: "Dominant AMM DEX. v4 adds hooks and a singleton architecture; UniswapX routes intents off-chain. Different risk profile from lending — no liquidations."
+links:
+  website: "https://uniswap.org"
+  docs: "https://docs.uniswap.org"
+  github: "https://github.com/Uniswap"
+defillamaSlugs: ["uniswap-v3", "uniswap-v2", "uniswap-v4"]

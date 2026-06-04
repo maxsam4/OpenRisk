@@ -1,0 +1,8 @@
+id: defiscan
+name: DeFiScan
+type: Rating
+focus: "Decentralization maturity reviews assessing who controls keys, upgrades, and admin powers — staged 0–2 across five dimensions."
+url: "https://www.defiscan.info"
+access: auto
+conflicts: null
+displayOrder: 0

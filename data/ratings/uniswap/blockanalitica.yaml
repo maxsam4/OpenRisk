@@ -1,0 +1,10 @@
+protocolId: uniswap
+feedId: blockanalitica
+coverage: not-yet-covered
+rating: null
+coverageNote: "DEX / AMM venues fall outside BlockAnalitica's lending-protocol risk scope; no Uniswap dashboard is published."
+provenance:
+  method: manual
+  checkedUrl: "https://blockanalitica.com/"
+  lastChecked: "2026-06-04"
+  curator: "openrisk"

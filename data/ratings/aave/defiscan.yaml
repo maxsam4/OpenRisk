@@ -1,0 +1,12 @@
+protocolId: aave
+feedId: defiscan
+coverage: covered
+rating:
+  verbatim: "Stage 0"
+  sourceUrl: "https://www.defiscan.info/protocols/aave/ethereum"
+coverageNote: "Verbatim decentralization stage from DeFiScan's Aave (Ethereum) review."
+provenance:
+  method: manual
+  checkedUrl: "https://www.defiscan.info/protocols/aave/ethereum"
+  lastChecked: "2026-06-04"
+  curator: "openrisk"

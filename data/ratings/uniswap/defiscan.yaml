@@ -1,0 +1,12 @@
+protocolId: uniswap
+feedId: defiscan
+coverage: covered
+rating:
+  verbatim: "Stage 2"
+  sourceUrl: "https://www.defiscan.info/protocols/uniswap-v3/ethereum"
+coverageNote: "Verbatim decentralization stage from DeFiScan's Uniswap V3 (Ethereum) review — the highest stage among the POC protocols."
+provenance:
+  method: manual
+  checkedUrl: "https://www.defiscan.info/protocols/uniswap-v3/ethereum"
+  lastChecked: "2026-06-04"
+  curator: "openrisk"

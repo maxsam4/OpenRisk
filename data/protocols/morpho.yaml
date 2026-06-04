@@ -1,0 +1,13 @@
+id: morpho
+name: Morpho
+category: Lending
+family: morpho
+versions: ["Blue", "Vaults"]
+chain: "Ethereum + Base + more"
+site: "morpho.org"
+blurb: "Minimal, immutable lending primitive (Morpho Blue) plus curated MetaMorpho vaults that allocate across markets. Risk is largely externalized to vault curators."
+links:
+  website: "https://morpho.org"
+  docs: "https://docs.morpho.org"
+  github: "https://github.com/morpho-org"
+defillamaSlugs: ["morpho-blue"]

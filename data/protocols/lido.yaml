@@ -1,0 +1,11 @@
+id: lido
+name: Lido
+category: Liquid_Staking
+chain: "Ethereum"
+site: "lido.fi"
+blurb: "Largest liquid-staking protocol: stake ETH, receive stETH while keeping liquidity. stETH is a rebasing token widely used as collateral across DeFi."
+links:
+  website: "https://lido.fi"
+  docs: "https://docs.lido.fi"
+  github: "https://github.com/lidofinance"
+defillamaSlugs: ["lido"]

@@ -1,0 +1,8 @@
+id: llamarisk
+name: LlamaRisk
+type: Research
+focus: "Per-protocol and per-asset deep-dive risk research with governance and collateral-onboarding analysis."
+url: "https://www.llamarisk.com"
+access: manual
+conflicts: "LlamaRisk is an onboarded Aave DAO Risk Service Provider, paid in GHO."
+displayOrder: 2

@@ -1,0 +1,10 @@
+protocolId: uniswap
+audits:
+  - firm: "Trail of Bits"
+    date: "2021-03"
+    scope: "Uniswap v3-core"
+    url: "https://github.com/Uniswap/v3-core/blob/main/audits/tob/audit.pdf"
+  - firm: "ABDK"
+    date: "2021-03"
+    scope: "Uniswap v3-core"
+    url: "https://github.com/Uniswap/v3-core/blob/main/audits/abdk/audit.pdf"

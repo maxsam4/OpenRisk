@@ -1,0 +1,32 @@
+protocolId: spark
+summary: "Sky-governed · spell delay"
+safeApiStatus: "n/a"
+items:
+  - key: type
+    label: "Type"
+    value: "Sky (ex-MakerDAO) governance — spell proxies, no dedicated multisig"
+    tag: onchain
+    sourceUrl: "https://etherscan.io/address/0x3300f198988e4C9C63F75dF86De36421f06af8c4"
+  - label: "SparkLend admin (Sky MCD Pause Proxy)"
+    value: "0xBE8E3e3618f7474F8cB1d074A26afFef007E98FB"
+    tag: onchain
+    sourceUrl: "https://raw.githubusercontent.com/sparkdotfi/sparklend-deployments/master/script/output/1/primary-latest.json"
+    link: "https://etherscan.io/address/0xBE8E3e3618f7474F8cB1d074A26afFef007E98FB"
+  - label: "Spark SubDAO Proxy"
+    value: "0x3300f198988e4C9C63F75dF86De36421f06af8c4"
+    tag: onchain
+    sourceUrl: "https://etherscan.io/address/0x3300f198988e4C9C63F75dF86De36421f06af8c4"
+    link: "https://etherscan.io/address/0x3300f198988e4C9C63F75dF86De36421f06af8c4"
+  - label: "Pause capability"
+    value: "Yes — freeze / pause all markets via Sky governance"
+    tag: onchain
+    sourceUrl: "https://github.com/sparkdotfi/sparklend-freezer"
+  - label: "Upgrade capability"
+    value: "Yes — via Sky executive spell"
+    tag: curated
+    sourceUrl: "https://docs.spark.fi"
+provenance:
+  method: manual
+  checkedUrl: "https://raw.githubusercontent.com/sparkdotfi/sparklend-deployments/master/script/output/1/primary-latest.json"
+  lastChecked: "2026-06-04"
+  curator: "openrisk"

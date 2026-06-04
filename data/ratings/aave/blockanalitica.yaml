@@ -1,0 +1,10 @@
+protocolId: aave
+feedId: blockanalitica
+coverage: not-yet-covered
+rating: null
+coverageNote: "BlockAnalitica's former Aave dashboard (aave.blockanalitica.com) is no longer online, and Aave is not listed among its current dashboards."
+provenance:
+  method: manual
+  checkedUrl: "https://blockanalitica.com/"
+  lastChecked: "2026-06-04"
+  curator: "openrisk"

@@ -1,0 +1,8 @@
+id: defipunkd
+name: "DeFiPunk'd"
+type: Rating
+focus: "Transparency registry rating protocols across five dimensions — Control, Ability to Exit, Autonomy, Open Access, Verifiability."
+url: "https://defipunkd.com"
+access: manual
+conflicts: null
+displayOrder: 3

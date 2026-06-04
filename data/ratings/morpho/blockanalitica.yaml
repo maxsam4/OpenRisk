@@ -1,0 +1,12 @@
+protocolId: morpho
+feedId: blockanalitica
+coverage: covered
+rating:
+  verbatim: "Active Morpho risk dashboard"
+  sourceUrl: "https://morpho.blockanalitica.com/"
+coverageNote: "Dedicated BlockAnalitica dashboard tracking Morpho market liquidations and utilization; metrics, not a single verdict label."
+provenance:
+  method: manual
+  checkedUrl: "https://morpho.blockanalitica.com/"
+  lastChecked: "2026-06-04"
+  curator: "openrisk"

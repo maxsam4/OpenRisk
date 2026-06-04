@@ -1,0 +1,6 @@
+protocolId: spark
+audits:
+  - firm: "ChainSecurity"
+    date: "2024-03"
+    scope: "SparkLend core updates (SparkLend is an Aave v3 fork and inherits its audits)"
+    url: "https://github.com/sparkdotfi/sparklend-v1-core/blob/master/audits/ChainSecurity_Sparklend_Core_Updates_audit.pdf"
