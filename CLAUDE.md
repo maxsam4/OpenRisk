@@ -55,6 +55,27 @@ Data-as-code monorepo, static-first. No database, no always-on backend.
   one global token stylesheet** (`app/globals.css`) — no Tailwind. Match the design; don't
   restyle. Dark/light theme via a `ThemeProvider` toggling `[data-theme]`.
 
+## Data sources & automation (automation-first)
+
+**Default to a script.** Every data source gets an ingestion adapter/service **whenever it
+exposes a stable, machine-readable signal we can copy verbatim** (a JSON API, a structured
+repo file, or reliably-parseable server-rendered HTML). A source stays **manually curated
+only** when it has no such surface — and the reason is documented here. New sources: add an
+adapter unless you can state why it's infeasible. Adapters/services own `coverage` + `rating`
++ `provenance` only; **narrative fields (`coverageNote`, `coverageScope`) stay human-curated**
+and are reviewed in the ingestion PR (e.g. when an adapter flips a cell to `not-yet-covered`).
+Every adapter must **fail loudly** and distinguish "source doesn't cover this" (→ `not-yet-covered`)
+from "fetch/parse failed" (→ throw → `sourceStatus: fetch-error`, last good data kept).
+
+| Source | Automated? | Mechanism / why not |
+|--------|-----------|---------------------|
+| **DeFiScan** (Rating) | ✅ `ingest --feed defiscan` | Reads the open-source review markdown's `stage:` frontmatter (no JSON API). |
+| **DeFiPunk'd** (Rating) | ✅ `ingest --feed defipunkd` | Parses the SSR Astro HTML — tier medal + the 5 dimension SVG `<title>`s of the primary instance, verbatim. A loaded page with no rating → `not-yet-covered`. |
+| **Safe governance** | ✅ `ingest:safe` | Safe Transaction API → `threshold`/`admin-multisig`/`summary`/`safeApiStatus` for protocols with a tracked Safe. |
+| **TVL** | ✅ build + client | `scripts/snapshot-tvl.ts` (DefiLlama) + live client fetch. |
+| **BlockAnalitica** (Dashboard) | ❌ manual | Client-rendered SPA; no reachable public JSON API (`api.blockanalitica.com` doesn't resolve, subdomains serve only a shell). Revisit if a public API appears. |
+| **LlamaRisk** (Research) | ❌ manual | Webflow research index of asset-centric reports — no per-protocol verdict to copy verbatim (coverage is detectable via the sitemap, but the "rating" is a prose report). |
+
 ## Commands
 
 ```bash
@@ -65,8 +86,9 @@ pnpm typecheck
 pnpm lint
 pnpm build       # snapshot TVL + static export
 pnpm --filter @dra/web dev                       # local dev server
-pnpm --filter @dra/ingestion ingest --feed defiscan   # refresh a rating feed → data/ratings/
-pnpm --filter @dra/ingestion ingest:safe              # refresh multisig governance → data/governance/
+pnpm --filter @dra/ingestion ingest --feed defiscan    # refresh DeFiScan ratings → data/ratings/
+pnpm --filter @dra/ingestion ingest --feed defipunkd   # refresh DeFiPunk'd ratings → data/ratings/
+pnpm --filter @dra/ingestion ingest:safe               # refresh multisig governance → data/governance/
 ```
 
 CI must stay green: `lint → typecheck → validate → test → build` (`.github/workflows/ci.yml`).

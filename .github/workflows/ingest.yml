@@ -17,11 +17,14 @@ jobs:
           cache: pnpm
       - run: pnpm install --frozen-lockfile
 
-      # Run BOTH refreshers but DO NOT fail the job yet — we still want to open a PR
+      # Run ALL refreshers but DO NOT fail the job yet — we still want to open a PR
       # carrying all provenance changes (incl. any fetch-error / Safe-failed stamps).
-      - id: feeds
+      - id: defiscan
         continue-on-error: true
         run: pnpm --filter @dra/ingestion ingest --feed defiscan
+      - id: defipunkd
+        continue-on-error: true
+        run: pnpm --filter @dra/ingestion ingest --feed defipunkd
       - id: safe
         continue-on-error: true
         run: pnpm --filter @dra/ingestion ingest:safe
@@ -32,14 +35,16 @@ jobs:
       - uses: peter-evans/create-pull-request@v6
         with:
           branch: ingest/auto-refresh
-          title: "data: automated refresh (DeFiScan + Safe governance)"
-          commit-message: "data: automated refresh (DeFiScan + Safe governance)"
+          title: "data: automated refresh (DeFiScan + DeFiPunk'd + Safe governance)"
+          commit-message: "data: automated refresh (DeFiScan + DeFiPunk'd + Safe governance)"
           body: |
             Automated refresh.
-            DeFiScan outcome: ${{ steps.feeds.outcome }} · Safe governance outcome: ${{ steps.safe.outcome }}
+            DeFiScan: ${{ steps.defiscan.outcome }} · DeFiPunk'd: ${{ steps.defipunkd.outcome }} · Safe governance: ${{ steps.safe.outcome }}
             On `failure`, affected cells carry `sourceStatus: fetch-error` /
-            `safeApiStatus: failed` (last good data preserved) — review before merge.
+            `safeApiStatus: failed` (last good data preserved). Coverage flips (e.g. a
+            protocol that lost its rating → `not-yet-covered`) and narrative fields
+            (coverageNote/coverageScope) need a human eye — review before merge.
 
       # Surface any failure AFTER the PR exists, so it is visible, not swallowed.
-      - if: steps.feeds.outcome == 'failure' || steps.safe.outcome == 'failure'
+      - if: steps.defiscan.outcome == 'failure' || steps.defipunkd.outcome == 'failure' || steps.safe.outcome == 'failure'
         run: echo "::error::An automated refresh had fetch errors — see the PR." && exit 1

@@ -71,11 +71,16 @@ a project invariant — do not omit the field.
 
 ## Automated refreshes
 
-The DeFiScan rating adapter and the Safe governance service run on a schedule
-(`.github/workflows/ingest.yml`) and open a PR with any changes — including loud
+The DeFiScan and DeFiPunk'd rating adapters and the Safe governance service run on a
+schedule (`.github/workflows/ingest.yml`) and open a PR with any changes — including loud
 `sourceStatus: fetch-error` / `safeApiStatus: failed` stamps when a source can't be
 reached (last good data is preserved, never silently overwritten). Humans review and
-merge. The ingestion CLIs only write files; they never open PRs themselves.
+merge. The ingestion CLIs only write files; they never open PRs themselves. Adapters refresh
+`coverage`/`rating`/`provenance`; narrative `coverageNote`/`coverageScope` stay human-curated.
+
+We **automate every source that exposes a machine-readable, verbatim-copyable signal**
+(see the source table in `CLAUDE.md`); BlockAnalitica and LlamaRisk are curated by hand
+because they currently expose no such surface.
 
 ## Conduct
 

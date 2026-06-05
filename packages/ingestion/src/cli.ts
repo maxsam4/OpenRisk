@@ -1,6 +1,7 @@
 import { fileURLToPath } from "node:url";
 import { dirname, resolve } from "node:path";
 import { makeDefiscanAdapter } from "./adapters/defiscan.js";
+import { makeDefipunkdAdapter } from "./adapters/defipunkd.js";
 import type { FeedAdapter } from "./adapter.js";
 import { writeCellSuccess, writeCellFailure } from "./writeCell.js";
 
@@ -10,6 +11,7 @@ const DEFAULT_DATA_ROOT = resolve(__dirname, "../../../data");
 
 const ADAPTERS: Record<string, () => FeedAdapter> = {
   defiscan: () => makeDefiscanAdapter(),
+  defipunkd: () => makeDefipunkdAdapter(),
 };
 
 // All POC protocols the matrix covers (the adapter decides which it supports).
