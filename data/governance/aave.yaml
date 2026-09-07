@@ -38,5 +38,7 @@ items:
 provenance:
   method: manual
   checkedUrl: "https://github.com/bgd-labs/aave-address-book/blob/main/src/ts/GovernanceV3Ethereum.ts"
-  lastChecked: "2026-06-04"
+  lastChecked: "2026-09-07"
   curator: "openrisk"
+  lastAttemptedFetchAt: 2026-09-07T10:55:27.212Z
+  lastSuccessfulFetchAt: 2026-09-07T10:55:27.212Z

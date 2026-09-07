@@ -6,7 +6,10 @@ rating:
   sourceUrl: "https://www.defiscan.info/protocols/lido-v2/ethereum"
 coverageNote: "Verbatim decentralization stage from DeFiScan's Lido V2 (Ethereum) review."
 provenance:
-  method: manual
+  method: auto
   checkedUrl: "https://www.defiscan.info/protocols/lido-v2/ethereum"
-  lastChecked: "2026-06-04"
+  lastChecked: "2026-09-07"
   curator: "openrisk"
+  lastAttemptedFetchAt: 2026-09-07T10:55:21.817Z
+  lastSuccessfulFetchAt: 2026-09-07T10:55:21.817Z
+  sourceStatus: ok

@@ -4,15 +4,23 @@ coverage: covered
 rating:
   verbatim: "Bronze tier · AI consensus on at least one dimension"
   dimensions:
-    - { label: "Control", value: "unknown" }
-    - { label: "Ability to Exit", value: "unknown" }
-    - { label: "Autonomy", value: "unknown" }
-    - { label: "Open Access", value: "unknown" }
-    - { label: "Verifiability", value: "green" }
+    - label: Control
+      value: tentative orange (2/3 models submitted)
+    - label: Ability to Exit
+      value: tentative red
+    - label: Autonomy
+      value: tentative red
+    - label: Open Access
+      value: tentative orange (2/3 models submitted)
+    - label: Verifiability
+      value: tentative green
   sourceUrl: "https://defipunkd.com/protocol/spark"
 coverageNote: "Preliminary DeFiPunk'd entry (SparkLend); only Verifiability has model consensus, the rest 'unknown'."
 provenance:
-  method: manual
+  method: auto
   checkedUrl: "https://defipunkd.com/protocol/spark"
-  lastChecked: "2026-06-04"
+  lastChecked: "2026-09-07"
   curator: "openrisk"
+  lastAttemptedFetchAt: 2026-09-07T10:55:24.673Z
+  lastSuccessfulFetchAt: 2026-09-07T10:55:24.673Z
+  sourceStatus: ok

@@ -37,5 +37,7 @@ items:
 provenance:
   method: manual
   checkedUrl: "https://docs.lido.fi/multisigs/emergency-brakes/"
-  lastChecked: "2026-06-04"
+  lastChecked: "2026-09-07"
   curator: "openrisk"
+  lastAttemptedFetchAt: 2026-09-07T10:55:27.212Z
+  lastSuccessfulFetchAt: 2026-09-07T10:55:27.212Z
