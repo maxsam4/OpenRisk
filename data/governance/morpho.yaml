@@ -1,5 +1,5 @@
 protocolId: morpho
-summary: "5/9 · immutable core"
+summary: "6/10 · immutable core"
 safeApiStatus: ok
 safe:
   address: "0xcBa28b38103307Ec8dA98377ffF9816C164f9AFa"
@@ -18,7 +18,7 @@ items:
     link: "https://etherscan.io/address/0xcBa28b38103307Ec8dA98377ffF9816C164f9AFa"
   - key: threshold
     label: "Threshold"
-    value: "5 / 9"
+    value: "6 / 10"
     tag: onchain
     sourceUrl: "https://api.safe.global/tx-service/eth/api/v1/safes/0xcBa28b38103307Ec8dA98377ffF9816C164f9AFa/"
   - label: "Core upgradeability"
@@ -32,5 +32,7 @@ items:
 provenance:
   method: manual
   checkedUrl: "https://docs.morpho.org/learn/governance/organization/"
-  lastChecked: "2026-06-04"
+  lastChecked: "2026-10-05"
   curator: "openrisk"
+  lastAttemptedFetchAt: 2026-10-05T12:53:22.828Z
+  lastSuccessfulFetchAt: 2026-10-05T12:53:22.828Z
