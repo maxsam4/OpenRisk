@@ -16,3 +16,5 @@ provenance:
   checkedUrl: "https://defipunkd.com/protocol/uniswap"
   lastChecked: "2026-06-04"
   curator: "openrisk"
+  lastAttemptedFetchAt: 2026-11-09T14:34:36.775Z
+  sourceStatus: fetch-error
